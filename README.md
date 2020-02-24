@@ -34,11 +34,16 @@ spec:
 EOF
 ```
 
-
 Setup prometheus via helm
 ```bash
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm repo update
 helm install prometheus stable/prometheus
+```
+
+Access via web UI
+```bash
+export POD_NAME=$(kubectl get pods --namespace default -l "app=prometheus,component=alertmanager" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace default port-forward $POD_NAME 9093
 ```
