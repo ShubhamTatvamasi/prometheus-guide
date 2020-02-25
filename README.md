@@ -1,5 +1,10 @@
 # prometheus-guide
 
+get prometheus chart
+```bash
+helm fetch --untar stable/prometheus
+```
+
 Setup Persistent Volume
 ```bash
 mkdir /mnt/pv{1,2}
